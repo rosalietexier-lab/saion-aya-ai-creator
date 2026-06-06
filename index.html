@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>斎院あや | AI Video Creator</title>
+  <meta name="description" content="斎院あやは、物語・ビジュアル・キャラクター・モーションを設計するAI Video Creatorです。">
+  <meta property="og:title" content="斎院あや | AI Video Creator">
+  <meta property="og:description" content="Story, Visual, Character, Motion.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og.webp">
+  <meta name="theme-color" content="#071326">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f7f1df;
+      --muted: #c7b991;
+      --blue: #071326;
+      --deep: #030712;
+      --gold: #d6b45f;
+      --line: rgba(214, 180, 95, 0.44);
+      --panel: rgba(3, 7, 18, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Hiragino Mincho ProN", "Hiragino Sans", "Yu Mincho", serif;
+      background: var(--deep);
+      color: var(--ink);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(3, 7, 18, 0.82), rgba(3, 7, 18, 0.3) 54%, rgba(3, 7, 18, 0.78)),
+        linear-gradient(180deg, rgba(3, 7, 18, 0.16), rgba(3, 7, 18, 0.92)),
+        url("assets/hero.webp") center / cover no-repeat;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      gap: 16px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark strong {
+      font-size: 18px;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark span {
+      color: var(--muted);
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    nav a,
+    .links a {
+      border: 1px solid var(--line);
+      background: rgba(3, 7, 18, 0.52);
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: clamp(48px, 11vh, 110px) 0 36px;
+    }
+
+    .hero {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(52px, 8vw, 108px);
+      line-height: 1;
+      letter-spacing: 0;
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+    }
+
+    .lead {
+      margin: 22px 0 0;
+      max-width: 590px;
+      color: #efe5c5;
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 26px 0 0;
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .tags span {
+      border: 1px solid var(--line);
+      background: rgba(3, 7, 18, 0.46);
+      padding: 8px 10px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 34px 0 0;
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    .links a:first-child {
+      background: rgba(214, 180, 95, 0.18);
+      border-color: rgba(214, 180, 95, 0.78);
+    }
+
+    .profile {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin: clamp(64px, 12vh, 120px) 0 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+    }
+
+    .profile section {
+      background: var(--panel);
+      padding: 22px;
+      min-height: 158px;
+      min-width: 0;
+    }
+
+    .profile h2 {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .profile p {
+      margin: 0;
+      color: #e8dcc1;
+      font-size: 14px;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0 0 22px;
+      color: rgba(247, 241, 223, 0.64);
+      font-family: "Hiragino Sans", system-ui, sans-serif;
+      font-size: 12px;
+    }
+
+    @media (max-width: 740px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding-top: 42px;
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+
+      .profile {
+        grid-template-columns: 1fr;
+      }
+
+      .profile section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand-mark">
+        <strong>斎院あや</strong>
+        <span>AI Video Creator</span>
+      </div>
+      <nav aria-label="Social links">
+        <a href="https://x.com/rosalietexier" rel="me noopener">X</a>
+        <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener">TikTok</a>
+        <a href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <p class="eyebrow">Story / Visual / Character / Motion</p>
+        <h1 id="title">斎院あや</h1>
+        <p class="lead">物語、画面設計、キャラクター、動きの連続性を組み上げるAI Video Creator。</p>
+        <div class="tags" aria-label="Creative fields">
+          <span>AI Video</span>
+          <span>Visual Direction</span>
+          <span>Character Design</span>
+          <span>Story Design</span>
+        </div>
+        <div class="links" aria-label="Primary social links">
+          <a href="https://x.com/rosalietexier" rel="me noopener">X @rosalietexier</a>
+          <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener">TikTok @rosalietexier</a>
+          <a href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram @rosalietexier2026</a>
+        </div>
+      </section>
+
+      <section class="profile" aria-label="Creative profile">
+        <section>
+          <h2>AI Video</h2>
+          <p>短編映像、縦型動画、PVの画面設計。</p>
+        </section>
+        <section>
+          <h2>World & Character</h2>
+          <p>印象、衣装、関係性、世界観を整える。</p>
+        </section>
+        <section>
+          <h2>Direction</h2>
+          <p>画像生成、映像生成、編集工程をつなぐ。</p>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <span>Saion Aya / AI Video Creator</span>
+    </footer>
+  </div>
+</body>
+</html>
