@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>斎院あや | AI Video Creator</title>
-  <meta name="description" content="斎院あやは、映像、MV、漫画制作、実験的なAI表現を横断するAI Video Creatorです。">
+  <meta name="description" content="斎院あやは、TapNow CPPとして、映像、MV、漫画制作、実験的なAI表現を横断するAI Video Creatorです。">
   <meta property="og:title" content="斎院あや | AI Video Creator">
   <meta property="og:description" content="AI Video, Story, Character, Motion, Manga Process.">
   <meta property="og:type" content="website">
@@ -396,8 +396,7 @@
         var(--panel-strong);
     }
 
-    .work-row,
-    .process-row {
+    .work-row {
       display: grid;
       grid-auto-flow: column;
       grid-auto-columns: minmax(310px, 380px);
@@ -513,6 +512,12 @@
       margin-bottom: 18px;
     }
 
+    .process-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
     .manga-shot {
       min-width: 0;
       border: 1px solid var(--line);
@@ -520,7 +525,7 @@
     }
 
     .manga-shot.rough .manga-shot-media img {
-      object-fit: contain;
+      object-fit: cover;
       object-position: center center;
       background: #ffffff;
     }
@@ -693,7 +698,8 @@
         grid-template-columns: 1fr;
       }
 
-      .manga-gallery {
+      .manga-gallery,
+      .process-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -761,7 +767,8 @@
         word-break: break-all;
       }
 
-      .manga-gallery {
+      .manga-gallery,
+      .process-row {
         grid-template-columns: 1fr;
       }
 
@@ -777,8 +784,7 @@
         font-size: 12px;
       }
 
-      .work-row,
-      .process-row {
+      .work-row {
         grid-auto-columns: minmax(270px, 86vw);
       }
 
@@ -824,7 +830,7 @@
             <p class="eyebrow">Constellation Emaki / AI Video Portfolio</p>
             <h1 id="title">斎院あや</h1>
             <p class="lead">
-              雪の泉に立つ青髪の巫女、黒とピンクの煙、静かな祈りと激しい術式。AI映像で物語を立ち上げるクリエイター。
+              TapNow CPP。雪の泉に立つ青髪の巫女、黒とピンクの煙、静かな祈りと激しい術式。AI映像で物語を立ち上げるクリエイター。
             </p>
             <div class="hero-actions" aria-label="Primary links">
               <a class="button-link instagram-primary" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram</a>
@@ -890,7 +896,7 @@
           <div class="work-row original-work-row" aria-label="Original works">
             <article class="card">
               <div class="media-frame">
-                <video controls muted playsinline preload="none" poster="assets/poster/works_original_01.webp" width="1280" height="720">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_01.webp" width="1280" height="720">
                   <source src="assets/video/works_original_01.mp4" type="video/mp4">
                 </video>
               </div>
@@ -903,7 +909,7 @@
             </article>
             <article class="card">
               <div class="media-frame">
-                <video controls muted playsinline preload="none" poster="assets/poster/works_original_02.webp" width="1280" height="720">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_02.webp" width="1280" height="720">
                   <source src="assets/video/works_original_02.mp4" type="video/mp4">
                 </video>
               </div>
@@ -916,7 +922,7 @@
             </article>
             <article class="card">
               <div class="media-frame">
-                <video controls muted playsinline preload="none" poster="assets/poster/works_original_03.webp" width="1280" height="720">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_03.webp" width="1280" height="720">
                   <source src="assets/video/works_original_03.mp4" type="video/mp4">
                 </video>
               </div>
@@ -929,15 +935,15 @@
             </article>
             <article class="card">
               <div class="media-frame">
-                <video controls muted playsinline preload="none" poster="assets/poster/works_original_04.webp" width="1280" height="720">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_04.webp" width="1280" height="720">
                   <source src="assets/video/works_original_04.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="card-body">
                 <span class="label">Original</span>
-                <h3>COLOTEK版 神の泉</h3>
+                <h3>colotek版 神の泉</h3>
                 <p>神の泉の物語を、より大きな画面とテンポで見せる特別版。</p>
-                <div class="tag-row"><span class="tag">16s</span><span class="tag">Hackathon</span></div>
+                <div class="tag-row"><span class="tag">16s</span><span class="tag">colotek</span></div>
               </div>
             </article>
           </div>
@@ -951,7 +957,7 @@
           <div class="work-row original-work-row" aria-label="Music video and hackathon works">
             <article class="card">
               <div class="media-frame">
-                <video controls muted playsinline preload="none" poster="assets/poster/works_mv_01.webp" width="720" height="1280">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_mv_01.webp" width="720" height="1280">
                   <source src="assets/video/works_mv_01.mp4" type="video/mp4">
                 </video>
               </div>
@@ -964,15 +970,15 @@
             </article>
             <article class="card">
               <div class="media-frame">
-                <video controls muted playsinline preload="none" poster="assets/poster/works_hack_01.webp" width="1280" height="720">
+                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_hack_01.webp" width="1280" height="720">
                   <source src="assets/video/works_hack_01.mp4" type="video/mp4">
                 </video>
               </div>
               <div class="card-body">
-                <span class="label">Hackathon</span>
+                <span class="label">TapNow Hackathon</span>
                 <h3>生きる覚悟</h3>
-                <p>Rosalie and ChouChou 名義の36時間ハッカソン制作。疑念、同盟、裏切り、究極の選択が交差するサバイバルゲーム作品。</p>
-                <div class="tag-row"><span class="tag">16s</span><span class="tag">Collaborative Work</span></div>
+                <p>Rosalie and ChouChou 名義のTapNow 36時間ハッカソン制作。疑念、同盟、裏切り、究極の選択が交差するサバイバルゲーム作品。</p>
+                <div class="tag-row"><span class="tag">16s</span><span class="tag">TapNow</span><span class="tag">Collaborative Work</span></div>
               </div>
             </article>
           </div>
@@ -1035,7 +1041,7 @@
           <article class="process-card"><span class="label">01</span><h3>世界観</h3><p>物語の舞台、光、色、空気を先に決める。</p></article>
           <article class="process-card"><span class="label">02</span><h3>人物</h3><p>衣装、表情、立ち姿をそろえ、同じ人物として動かす。</p></article>
           <article class="process-card"><span class="label">03</span><h3>場面</h3><p>絵コンテやラフで、視線と間をつくる。</p></article>
-          <article class="process-card"><span class="label">04</span><h3>選ぶ</h3><p>候補を見比べ、物語に残す一枚を選ぶ。</p></article>
+          <article class="process-card"><span class="label">04</span><h3>場所</h3><p>泉、雪、金の線、夜空。場面が戻る場所をつくる。</p></article>
         </div>
       </section>
 
@@ -1072,7 +1078,7 @@
           <div class="world-copy">
             <p class="eyebrow">World</p>
             <h2 id="world-title">宇宙、古代、未来をひとつの映像へ。</h2>
-            <p class="statement">雪の泉、星の空、金の光。古い祈りが、未来の映像として動き出す。</p>
+            <p class="statement">雪の泉、星の空、金の光。古の祈りが、未来の映像として動き出す。</p>
             <p>斎院あやの作品には、静けさと激しさ、神話と日常、青と金と煙の色が同居しています。</p>
           </div>
           <div class="world-visual" role="img" aria-label="斎院あやの雪の泉の世界観ビジュアル"></div>
@@ -1100,15 +1106,5 @@
       Sign Aya / Rosalie Texier — AI Video & Story Works
     </footer>
   </div>
-  <script>
-    const videos = Array.from(document.querySelectorAll("video[controls]"));
-    for (const video of videos) {
-      video.addEventListener("play", () => {
-        for (const other of videos) {
-          if (other !== video) other.pause();
-        }
-      });
-    }
-  </script>
 </body>
 </html>
