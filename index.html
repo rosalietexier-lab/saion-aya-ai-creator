@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>斎院あや | AI Video Creator</title>
-  <meta name="description" content="斎院あやは、TapNow CPPとして、映像、MV、漫画制作、実験的なAI表現を横断するAI Video Creatorです。">
+  <meta name="description" content="斎院あや / Sign Ayaは、AI映像、物語、漫画表現を横断し、和風ダークファンタジーを制作するAI Video Creatorです。TapNow CPP Creator。">
   <meta property="og:title" content="斎院あや | AI Video Creator">
-  <meta property="og:description" content="AI Video, Story, Character, Motion, Manga Process.">
+  <meta property="og:description" content="Japanese dark fantasy through AI video, story, motion, manga, and mythic visuals.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/og.webp">
   <meta name="theme-color" content="#050712">
@@ -152,6 +152,16 @@
       font-size: 12px;
       text-transform: uppercase;
       white-space: nowrap;
+    }
+
+    .brand-mark .brand-reading {
+      color: rgba(248, 241, 223, 0.72);
+      font-family: var(--serif);
+      text-transform: none;
+    }
+
+    .brand-mark .brand-role {
+      color: var(--muted);
     }
 
     nav {
@@ -301,6 +311,38 @@
       overflow-wrap: anywhere;
     }
 
+    .name-reading {
+      margin-top: 12px;
+      color: var(--gold-strong);
+      font-family: var(--serif);
+      font-size: clamp(15px, 1.7vw, 19px);
+      line-height: 1.5;
+    }
+
+    .hero-subcopy {
+      margin-top: 12px;
+      max-width: 670px;
+      color: var(--muted);
+      font-family: var(--serif);
+      font-size: clamp(14px, 1.4vw, 17px);
+      line-height: 1.72;
+      overflow-wrap: anywhere;
+    }
+
+    .credential {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      margin-top: 18px;
+      border: 1px solid rgba(216, 182, 96, 0.62);
+      background: rgba(216, 182, 96, 0.15);
+      color: #fff6d9;
+      padding: 0 12px;
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
     .hero-actions,
     .tags,
     .tag-row {
@@ -346,9 +388,7 @@
 
     .section-head p,
     .card p,
-    .feature-copy p,
     .manga-shot p,
-    .process-card p,
     .world-copy p,
     .connect p {
       color: #dfd2ad;
@@ -357,16 +397,22 @@
       overflow-wrap: anywhere;
     }
 
+    .section-subcopy,
+    .section-head .section-subcopy {
+      margin-top: 7px;
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
     .feature {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-      gap: 18px;
-      align-items: stretch;
+      display: block;
     }
 
     .feature-media,
     .card,
-    .process-card,
     .fan-card {
       border: 1px solid var(--line);
       background: var(--panel);
@@ -384,16 +430,6 @@
       position: absolute;
       inset: 14px;
       border: 1px solid rgba(216, 182, 96, 0.42);
-    }
-
-    .feature-copy {
-      padding: clamp(24px, 4vw, 36px);
-      display: grid;
-      align-content: center;
-      gap: 18px;
-      background:
-        linear-gradient(180deg, rgba(182, 63, 74, 0.16), transparent 48%),
-        var(--panel-strong);
     }
 
     .work-row {
@@ -436,7 +472,6 @@
     }
 
     .card,
-    .process-card,
     .fan-card {
       scroll-snap-align: start;
       min-width: 0;
@@ -460,7 +495,6 @@
     }
 
     .card-body,
-    .process-card,
     .fan-card {
       padding: 20px;
     }
@@ -512,12 +546,6 @@
       margin-bottom: 18px;
     }
 
-    .process-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
     .manga-shot {
       min-width: 0;
       border: 1px solid var(--line);
@@ -537,11 +565,6 @@
     .manga-shot h3 {
       margin-top: 10px;
       font-size: 19px;
-    }
-
-    .process-card {
-      min-height: 178px;
-      background: var(--panel-strong);
     }
 
     .fan {
@@ -698,8 +721,7 @@
         grid-template-columns: 1fr;
       }
 
-      .manga-gallery,
-      .process-row {
+      .manga-gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -749,7 +771,16 @@
       .lead {
         font-size: 16px;
         line-height: 1.78;
-        word-break: break-all;
+        word-break: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-subcopy,
+      .name-reading,
+      .section-subcopy {
+        font-size: 14px;
+        word-break: normal;
+        overflow-wrap: anywhere;
       }
 
       .world-copy .statement {
@@ -759,16 +790,21 @@
 
       .section-head p,
       .card p,
-      .feature-copy p,
       .manga-shot p,
-      .process-card p,
       .world-copy p,
       .connect p {
         word-break: break-all;
       }
 
-      .manga-gallery,
-      .process-row {
+      .hero-subcopy,
+      .name-reading,
+      .section-subcopy,
+      .section-head .section-subcopy {
+        word-break: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .manga-gallery {
         grid-template-columns: 1fr;
       }
 
@@ -806,8 +842,9 @@
     <header>
       <div class="nav-inner">
         <div class="brand-mark">
-          <strong>斎院あや</strong>
-          <span>Sign Aya — AI VIDEO CREATOR</span>
+          <strong>斎院あや / Sign Aya</strong>
+          <span class="brand-reading">さいん・あや</span>
+          <span class="brand-role">AI VIDEO CREATOR</span>
         </div>
         <nav aria-label="Navigation and social links">
           <a href="#works">Works</a>
@@ -829,9 +866,11 @@
           <div class="hero-copy">
             <p class="eyebrow">Constellation Emaki / AI Video Portfolio</p>
             <h1 id="title">斎院あや</h1>
+            <p class="name-reading">斎院あや / Sign Aya（さいん・あや）</p>
             <p class="lead">
-              TapNow CPP。雪の泉に立つ青髪の巫女、黒とピンクの煙、静かな祈りと激しい術式。AI映像で物語を立ち上げるクリエイター。
+              AI映像、物語、漫画表現を横断し、雪の泉に立つ青髪の巫女、荒御、神水、祈りと術式の物語を制作しています。
             </p>
+            <p class="hero-subcopy">AI Video Creator creating Japanese dark fantasy through story, motion, manga, and mythic visuals.</p>
             <div class="hero-actions" aria-label="Primary links">
               <a class="button-link instagram-primary" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram</a>
               <a class="button-link" href="https://x.com/rosalietexier" rel="me noopener">X</a>
@@ -845,6 +884,7 @@
               <span>Motion</span>
               <span>Manga Process</span>
             </div>
+            <p class="credential">TapNow CPP Creator</p>
           </div>
         </div>
       </section>
@@ -853,6 +893,7 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Featured Saga</p>
+            <p class="section-subcopy">Original AI Video Series</p>
             <h2 id="featured-title">神の泉の呪いの巫女</h2>
           </div>
           <p>
@@ -861,19 +902,6 @@
         </div>
         <div class="feature">
           <div class="feature-media" role="img" aria-label="旗艦作品の代表フレーム"></div>
-          <div class="feature-copy">
-            <span class="label">Original Saga</span>
-            <h3>雪の泉から始まる、巫女と荒御の物語</h3>
-            <p>
-              水が舞い、雪が降り、静けさが戦いへ変わる。短い映像の断片から、長編の気配を感じてください。
-            </p>
-            <div class="tag-row">
-              <span class="tag">Seedance</span>
-              <span class="tag">Grok</span>
-              <span class="tag">CapCut</span>
-              <span class="tag">Original Sound</span>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -881,6 +909,7 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Works Gallery</p>
+            <p class="section-subcopy">Story / Motion / Music Video</p>
             <h2 id="works-title">映像作品</h2>
           </div>
           <p>
@@ -904,7 +933,6 @@
                 <span class="label">Original</span>
                 <h3>雪泉の邂逅</h3>
                 <p>雪夜の泉に、ひとりの巫女が現れる。静けさから物語が始まる。</p>
-                <div class="tag-row"><span class="tag">12s</span><span class="tag">No audio</span></div>
               </div>
             </article>
             <article class="card">
@@ -917,7 +945,6 @@
                 <span class="label">Original</span>
                 <h3>神水の舞</h3>
                 <p>神水が弧を描き、衣がほどけるように動く。祈りが映像になる。</p>
-                <div class="tag-row"><span class="tag">12s</span><span class="tag">Motion</span></div>
               </div>
             </article>
             <article class="card">
@@ -930,7 +957,6 @@
                 <span class="label">Original</span>
                 <h3>荒御襲撃</h3>
                 <p>静かな神域に荒御が踏み込む。空気が変わる一瞬を切り取る。</p>
-                <div class="tag-row"><span class="tag">12s</span><span class="tag">Action</span></div>
               </div>
             </article>
             <article class="card">
@@ -941,9 +967,8 @@
               </div>
               <div class="card-body">
                 <span class="label">Original</span>
-                <h3>colotek版 神の泉</h3>
+                <h3>COLOTEK版『神の泉』</h3>
                 <p>神の泉の物語を、より大きな画面とテンポで見せる特別版。</p>
-                <div class="tag-row"><span class="tag">16s</span><span class="tag">colotek</span></div>
               </div>
             </article>
           </div>
@@ -965,7 +990,6 @@
                 <span class="label">Music Video</span>
                 <h3>ピンクの煙</h3>
                 <p>黒い夜にピンクの煙が揺れる。神域とは違う色で、もうひとつの世界を開く。</p>
-                <div class="tag-row"><span class="tag">16s</span><span class="tag">Vertical</span></div>
               </div>
             </article>
             <article class="card">
@@ -978,7 +1002,6 @@
                 <span class="label">TapNow Hackathon</span>
                 <h3>生きる覚悟</h3>
                 <p>Rosalie and ChouChou 名義のTapNow 36時間ハッカソン制作。疑念、同盟、裏切り、究極の選択が交差するサバイバルゲーム作品。</p>
-                <div class="tag-row"><span class="tag">16s</span><span class="tag">TapNow</span><span class="tag">Collaborative Work</span></div>
               </div>
             </article>
           </div>
@@ -989,6 +1012,7 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Manga Process</p>
+            <p class="section-subcopy">Character Design / Worldbuilding / Motion</p>
             <h2 id="manga-title">物語が絵になるまで</h2>
           </div>
           <p>
@@ -1037,29 +1061,24 @@
             </div>
           </article>
         </div>
-        <div class="process-row" aria-label="Manga production process">
-          <article class="process-card"><span class="label">01</span><h3>世界観</h3><p>物語の舞台、光、色、空気を先に決める。</p></article>
-          <article class="process-card"><span class="label">02</span><h3>人物</h3><p>衣装、表情、立ち姿をそろえ、同じ人物として動かす。</p></article>
-          <article class="process-card"><span class="label">03</span><h3>場面</h3><p>絵コンテやラフで、視線と間をつくる。</p></article>
-          <article class="process-card"><span class="label">04</span><h3>場所</h3><p>泉、雪、金の線、夜空。場面が戻る場所をつくる。</p></article>
-        </div>
       </section>
 
       <section class="section" id="fanworks" aria-labelledby="fanworks-title">
         <div class="section-head">
           <div>
             <p class="eyebrow">Fan Works</p>
+            <p class="section-subcopy">Fan Works Archive</p>
             <h2 id="fanworks-title">JJK・他二次創作</h2>
           </div>
           <p>
-            JJK・他作品への敬意をこめた非公式ファン創作。漫画とイラストはpixivで公開しています。
+            非公式ファン創作はpixivにて公開しています。このLPでは、オリジナル作品とAI映像制作を中心に紹介しています。
           </p>
         </div>
         <div class="fan">
           <div class="fan-card">
             <span class="label">Link Out</span>
             <h3>Fan Works on pixiv</h3>
-            <p>二次創作の漫画、イラスト、派生作品はこちらから見られます。</p>
+            <p>漫画・小説・二次創作アーカイブはこちらから見られます。</p>
             <a class="card-link" href="https://www.pixiv.net/users/54034407" rel="me noopener">
               <strong>View on pixiv</strong>
               <span>pixiv.net/users/54034407</span>
@@ -1077,6 +1096,7 @@
         <div class="world">
           <div class="world-copy">
             <p class="eyebrow">World</p>
+            <p class="section-subcopy">Mythic Visual World</p>
             <h2 id="world-title">宇宙、古代、未来をひとつの映像へ。</h2>
             <p class="statement">雪の泉、星の空、金の光。古の祈りが、未来の映像として動き出す。</p>
             <p>斎院あやの作品には、静けさと激しさ、神話と日常、青と金と煙の色が同居しています。</p>
@@ -1089,21 +1109,22 @@
         <div class="connect">
           <div>
             <p class="eyebrow">Connect</p>
+            <p class="section-subcopy">Works and Social Links</p>
             <h2 id="connect-title">最新作はInstagramへ。</h2>
-            <p>新しい映像、制作途中の一枚、作品の空気感はInstagramを中心に更新しています。</p>
+            <p>新しい映像と制作過程はInstagram、短尺動画はTikTok、漫画・小説・ファン創作はpixivで公開しています。</p>
           </div>
           <div class="connect-links" aria-label="Social links">
-            <a class="featured-social" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener"><strong>Instagram</strong><span>@rosalietexier2026</span></a>
-            <a href="https://x.com/rosalietexier" rel="me noopener"><strong>X</strong><span>@rosalietexier</span></a>
-            <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener"><strong>TikTok</strong><span>@rosalietexier</span></a>
-            <a href="https://www.pixiv.net/users/54034407" rel="me noopener"><strong>pixiv</strong><span>Fan Works</span></a>
+            <a class="featured-social" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener"><strong>Instagram</strong><span>AI映像作品・制作過程 / @rosalietexier2026</span></a>
+            <a href="https://x.com/rosalietexier" rel="me noopener"><strong>X</strong><span>制作告知・更新 / @rosalietexier</span></a>
+            <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener"><strong>TikTok</strong><span>短尺動画 / @rosalietexier</span></a>
+            <a href="https://www.pixiv.net/users/54034407" rel="me noopener"><strong>pixiv</strong><span>漫画・小説・二次創作アーカイブ</span></a>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      Sign Aya / Rosalie Texier — AI Video & Story Works
+      Sign Aya / Rosalie Texier — AI Video & Story Works / TapNow CPP Creator
     </footer>
   </div>
 </body>
