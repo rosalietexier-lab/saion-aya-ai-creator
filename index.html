@@ -8,7 +8,12 @@
   <meta property="og:title" content="斎院あや | AI Video Creator">
   <meta property="og:description" content="Japanese dark fantasy through AI video, story, motion, manga, and mythic visuals.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/og.webp">
+  <meta property="og:url" content="https://rosalietexier-lab.github.io/saion-aya-ai-creator/">
+  <meta property="og:image" content="https://rosalietexier-lab.github.io/saion-aya-ai-creator/assets/og.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="斎院あや | AI Video Creator">
+  <meta name="twitter:description" content="Japanese dark fantasy through AI video, story, motion, manga, and mythic visuals.">
+  <meta name="twitter:image" content="https://rosalietexier-lab.github.io/saion-aya-ai-creator/assets/og.webp">
   <meta name="theme-color" content="#050712">
   <style>
     :root {
@@ -208,8 +213,7 @@
       isolation: isolate;
     }
 
-    .hero-media,
-    .hero-fallback {
+    .hero-media {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -221,11 +225,6 @@
     .hero-media {
       opacity: 0.64;
       filter: saturate(0.9) contrast(1.08) brightness(0.72);
-    }
-
-    .hero-fallback {
-      background: url("assets/hero.webp") center / cover no-repeat;
-      z-index: -4;
     }
 
     .hero::before {
@@ -432,6 +431,29 @@
       border: 1px solid rgba(216, 182, 96, 0.42);
     }
 
+    .feature-link,
+    .media-link {
+      display: block;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .feature-link:focus-visible,
+    .media-link:focus-visible {
+      outline: 2px solid var(--gold-strong);
+      outline-offset: 4px;
+    }
+
+    .feature-link:hover .feature-media,
+    .media-link:hover .media-frame {
+      border-color: rgba(242, 213, 139, 0.9);
+      filter: brightness(1.06);
+    }
+
+    .media-link video {
+      pointer-events: none;
+    }
+
     .work-row {
       display: grid;
       grid-auto-flow: column;
@@ -499,6 +521,17 @@
       padding: 20px;
     }
 
+    .sub-link {
+      margin-top: 12px;
+      font-family: var(--sans);
+      font-size: 12px;
+    }
+
+    .sub-link a {
+      color: var(--gold-strong);
+      border-bottom: 1px solid rgba(242, 213, 139, 0.5);
+    }
+
     .label {
       display: inline-flex;
       align-items: center;
@@ -537,6 +570,37 @@
       height: 100%;
       object-fit: cover;
       object-position: center center;
+    }
+
+    .manga-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      min-height: 112px;
+      border: 1px solid var(--line);
+      background: rgba(5, 7, 18, 0.72);
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold-strong);
+      font-family: var(--serif);
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 10px;
+      color: #dfd2ad;
+      font-family: var(--serif);
+      font-size: 13px;
+      line-height: 1.65;
     }
 
     .manga-gallery {
@@ -689,10 +753,6 @@
         scroll-behavior: auto;
       }
 
-      .hero-media {
-        display: none;
-      }
-
       .hero::after {
         animation: none;
       }
@@ -723,6 +783,10 @@
 
       .manga-gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .manga-stats {
+        grid-template-columns: 1fr;
       }
 
       .world-visual {
@@ -808,6 +872,11 @@
         grid-template-columns: 1fr;
       }
 
+      .stat span {
+        word-break: normal;
+        overflow-wrap: anywhere;
+      }
+
       .hero-actions .button-link,
       .card-link {
         width: 100%;
@@ -858,7 +927,6 @@
 
     <main>
       <section class="hero" aria-labelledby="title">
-        <div class="hero-fallback"></div>
         <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="assets/poster/hero_reel.webp" aria-hidden="true">
           <source src="assets/video/hero_reel.mp4" type="video/mp4">
         </video>
@@ -901,7 +969,9 @@
           </p>
         </div>
         <div class="feature">
-          <div class="feature-media" role="img" aria-label="旗艦作品の代表フレーム"></div>
+          <a class="feature-link" href="https://www.instagram.com/p/DX6A4NkzfZz/" rel="noopener" aria-label="神の泉の呪いの巫女の5分フル版をInstagramで見る">
+            <div class="feature-media" role="img" aria-label="旗艦作品の代表フレーム"></div>
+          </a>
         </div>
       </section>
 
@@ -924,11 +994,13 @@
           </div>
           <div class="work-row original-work-row" aria-label="Original works">
             <article class="card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_01.webp" width="1280" height="720">
-                  <source src="assets/video/works_original_01.mp4" type="video/mp4">
-                </video>
-              </div>
+              <a class="media-link" href="https://www.instagram.com/p/DYtZfd4I17U/" rel="noopener" aria-label="雪泉の邂逅のフル版をInstagramで見る">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_01.webp" width="1280" height="720">
+                    <source src="assets/video/works_original_01.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </a>
               <div class="card-body">
                 <span class="label">Original</span>
                 <h3>雪泉の邂逅</h3>
@@ -936,11 +1008,13 @@
               </div>
             </article>
             <article class="card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_02.webp" width="1280" height="720">
-                  <source src="assets/video/works_original_02.mp4" type="video/mp4">
-                </video>
-              </div>
+              <a class="media-link" href="https://www.instagram.com/p/DYtZfd4I17U/" rel="noopener" aria-label="神水の舞のフル版をInstagramで見る">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_02.webp" width="1280" height="720">
+                    <source src="assets/video/works_original_02.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </a>
               <div class="card-body">
                 <span class="label">Original</span>
                 <h3>神水の舞</h3>
@@ -948,11 +1022,13 @@
               </div>
             </article>
             <article class="card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_03.webp" width="1280" height="720">
-                  <source src="assets/video/works_original_03.mp4" type="video/mp4">
-                </video>
-              </div>
+              <a class="media-link" href="https://www.instagram.com/p/DYtaTOHIg7N/" rel="noopener" aria-label="荒御襲撃のフル版をInstagramで見る">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_03.webp" width="1280" height="720">
+                    <source src="assets/video/works_original_03.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </a>
               <div class="card-body">
                 <span class="label">Original</span>
                 <h3>荒御襲撃</h3>
@@ -960,11 +1036,13 @@
               </div>
             </article>
             <article class="card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_04.webp" width="1280" height="720">
-                  <source src="assets/video/works_original_04.mp4" type="video/mp4">
-                </video>
-              </div>
+              <a class="media-link" href="https://www.instagram.com/p/DaSrAOkzuo1/" rel="noopener" aria-label="COLOTEK版 神の泉のフル版をInstagramで見る">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_04.webp" width="1280" height="720">
+                    <source src="assets/video/works_original_04.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </a>
               <div class="card-body">
                 <span class="label">Original</span>
                 <h3>COLOTEK版『神の泉』</h3>
@@ -981,11 +1059,13 @@
           </div>
           <div class="work-row original-work-row" aria-label="Music video and hackathon works">
             <article class="card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_mv_01.webp" width="720" height="1280">
-                  <source src="assets/video/works_mv_01.mp4" type="video/mp4">
-                </video>
-              </div>
+              <a class="media-link" href="https://www.instagram.com/p/DYr30cLTRd2/" rel="noopener" aria-label="ピンクの煙の縦型フル版をInstagramで見る">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_mv_01.webp" width="720" height="1280">
+                    <source src="assets/video/works_mv_01.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </a>
               <div class="card-body">
                 <span class="label">Music Video</span>
                 <h3>ピンクの煙</h3>
@@ -993,15 +1073,18 @@
               </div>
             </article>
             <article class="card">
-              <div class="media-frame">
-                <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_hack_01.webp" width="1280" height="720">
-                  <source src="assets/video/works_hack_01.mp4" type="video/mp4">
-                </video>
-              </div>
+              <a class="media-link" href="https://www.instagram.com/p/DaOTc5Rz5vs/" rel="noopener" aria-label="生きる覚悟の前編をInstagramで見る">
+                <div class="media-frame">
+                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_hack_01.webp" width="1280" height="720">
+                    <source src="assets/video/works_hack_01.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </a>
               <div class="card-body">
                 <span class="label">TapNow Hackathon</span>
                 <h3>生きる覚悟</h3>
-                <p>Rosalie and ChouChou 名義のTapNow 36時間ハッカソン制作。疑念、同盟、裏切り、究極の選択が交差するサバイバルゲーム作品。</p>
+                <p>Rosalie and ChouChou 名義のTapNow 36時間ハッカソン制作。疑念、同盟、裏切り、究極の選択が交差するサバイバルゲーム作品。動画クリックで前編へ。</p>
+                <p class="sub-link"><a href="https://www.instagram.com/p/DaOUGUOzOrr/" rel="noopener">後編はこちら</a></p>
               </div>
             </article>
           </div>
@@ -1018,6 +1101,11 @@
           <p>
             映像だけでなく、漫画として読める場面も制作中です。世界観、人物、絵コンテ、背景を少しずつ重ねています。
           </p>
+        </div>
+        <div class="manga-stats" aria-label="Manga production scale">
+          <div class="stat"><strong>85ページ</strong><span>漫画版として組んでいる長編ネームの想定ページ数。場面の順番、見せ場、余白をこの規模で設計しています。</span></div>
+          <div class="stat"><strong>53-140枚</strong><span>ページ数ではなく、1話分の表情・構図・視線を選ぶために生成して見比べる候補画像の幅です。</span></div>
+          <div class="stat"><strong>選定</strong><span>候補画像、ラフ、映像カットを照らし合わせ、漫画として読める流れになるよう採用場面を決めています。</span></div>
         </div>
         <div class="manga-gallery" aria-label="Manga reference images">
           <article class="manga-shot">
