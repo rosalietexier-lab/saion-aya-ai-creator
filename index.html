@@ -4,34 +4,65 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>斎院あや | AI Video Creator</title>
-  <meta name="description" content="斎院あやは、物語・ビジュアル・キャラクター・モーションを設計するAI Video Creatorです。">
+  <meta name="description" content="斎院あやは、映像、MV、漫画制作、実験的なAI表現を横断するAI Video Creatorです。">
   <meta property="og:title" content="斎院あや | AI Video Creator">
-  <meta property="og:description" content="Story, Visual, Character, Motion.">
+  <meta property="og:description" content="AI Video, Story, Character, Motion, Manga Process.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/og.webp">
-  <meta name="theme-color" content="#071326">
+  <meta name="theme-color" content="#050712">
   <style>
     :root {
       color-scheme: dark;
-      --ink: #f7f1df;
-      --muted: #c7b991;
-      --blue: #071326;
-      --deep: #030712;
-      --gold: #d6b45f;
-      --line: rgba(214, 180, 95, 0.44);
-      --panel: rgba(3, 7, 18, 0.7);
+      --ink: #fbf3df;
+      --muted: #d0c09a;
+      --gold: #d8b660;
+      --gold-strong: #f2d58b;
+      --red: #b63f4a;
+      --pink: #e68ac5;
+      --cyan: #8dc7ff;
+      --deep: #050712;
+      --night: #091326;
+      --panel: rgba(5, 7, 18, 0.76);
+      --panel-strong: rgba(5, 7, 18, 0.92);
+      --line: rgba(216, 182, 96, 0.42);
+      --line-soft: rgba(248, 241, 223, 0.14);
+      --sans: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+      --serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif CJK JP", "Source Han Serif JP", serif;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Hiragino Mincho ProN", "Hiragino Sans", "Yu Mincho", serif;
-      background: var(--deep);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 18% 8%, rgba(182, 63, 74, 0.16), transparent 26rem),
+        radial-gradient(circle at 78% 12%, rgba(141, 199, 255, 0.18), transparent 30rem),
+        linear-gradient(180deg, var(--night), var(--deep) 46%, #08050a);
       color: var(--ink);
+      font-family: var(--serif);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(248, 241, 223, 0.72) 0 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(216, 182, 96, 0.55) 0 1px, transparent 1.4px);
+      background-position: 0 0, 42px 18px;
+      background-size: 96px 96px, 142px 142px;
+      opacity: 0.22;
+      mask-image: linear-gradient(180deg, #000, transparent 84%);
     }
 
     a {
@@ -39,23 +70,58 @@
       text-decoration: none;
     }
 
+    button,
+    video {
+      font: inherit;
+    }
+
     .page {
-      min-height: 100vh;
-      background:
-        linear-gradient(90deg, rgba(3, 7, 18, 0.82), rgba(3, 7, 18, 0.3) 54%, rgba(3, 7, 18, 0.78)),
-        linear-gradient(180deg, rgba(3, 7, 18, 0.16), rgba(3, 7, 18, 0.92)),
-        url("assets/hero.webp") center / cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border: 1px solid rgba(216, 182, 96, 0.15);
+      border-radius: 50%;
+      transform: rotate(-18deg);
+    }
+
+    .page::before {
+      width: 58rem;
+      height: 58rem;
+      top: 6rem;
+      right: -28rem;
+    }
+
+    .page::after {
+      width: 34rem;
+      height: 34rem;
+      top: 20rem;
+      right: -12rem;
+      border-color: rgba(141, 199, 255, 0.18);
     }
 
     header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 7, 18, 0.78);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: min(1120px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 32px));
+      min-height: 72px;
       margin: 0 auto;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
-      gap: 16px;
+      gap: 18px;
     }
 
     .brand-mark {
@@ -66,14 +132,23 @@
     }
 
     .brand-mark strong {
-      font-size: 18px;
-      letter-spacing: 0;
+      font-size: 20px;
       white-space: nowrap;
+    }
+
+    .brand-mark span,
+    .eyebrow,
+    nav,
+    .button-link,
+    .meta,
+    .tag,
+    .card-link,
+    footer {
+      font-family: var(--sans);
     }
 
     .brand-mark span {
       color: var(--muted);
-      font-family: "Hiragino Sans", system-ui, sans-serif;
       font-size: 12px;
       text-transform: uppercase;
       white-space: nowrap;
@@ -81,154 +156,641 @@
 
     nav {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
-      font-family: "Hiragino Sans", system-ui, sans-serif;
+      gap: 10px;
       font-size: 13px;
     }
 
     nav a,
-    .links a {
-      border: 1px solid var(--line);
-      background: rgba(3, 7, 18, 0.52);
-      min-height: 38px;
+    .button-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      background: rgba(5, 7, 18, 0.5);
       padding: 0 14px;
     }
 
-    main {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: clamp(48px, 11vh, 110px) 0 36px;
+    .button-link.primary {
+      color: #fff6d9;
+      background: rgba(216, 182, 96, 0.22);
+      border-color: rgba(216, 182, 96, 0.82);
+    }
+
+    .button-link.instagram-primary {
+      min-height: 50px;
+      padding: 0 24px;
+      color: #070914;
+      background: linear-gradient(135deg, var(--gold-strong), #f7e4ad);
+      border-color: rgba(255, 235, 174, 0.96);
+      font-weight: 700;
+      box-shadow: 0 12px 34px rgba(216, 182, 96, 0.18);
     }
 
     .hero {
-      max-width: 680px;
+      position: relative;
+      min-height: min(790px, calc(100vh - 72px));
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-media,
+    .hero-fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    .hero-media {
+      opacity: 0.64;
+      filter: saturate(0.9) contrast(1.08) brightness(0.72);
+    }
+
+    .hero-fallback {
+      background: url("assets/hero.webp") center / cover no-repeat;
+      z-index: -4;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(5, 7, 18, 0.94), rgba(5, 7, 18, 0.58) 46%, rgba(5, 7, 18, 0.74)),
+        linear-gradient(180deg, rgba(5, 7, 18, 0.08), rgba(5, 7, 18, 0.94));
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 14% auto auto 56%;
+      z-index: -1;
+      width: min(36vw, 460px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(216, 182, 96, 0.34);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 28px rgba(216, 182, 96, 0.035),
+        inset 0 0 44px rgba(141, 199, 255, 0.1);
+      animation: orbit 42s linear infinite;
+    }
+
+    .hero-inner,
+    .section,
+    footer {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      padding: clamp(64px, 12vh, 116px) 0 clamp(54px, 9vh, 88px);
+    }
+
+    .hero-copy {
+      max-width: 760px;
     }
 
     .eyebrow {
+      margin: 0 0 14px;
       color: var(--gold);
-      font-family: "Hiragino Sans", system-ui, sans-serif;
       font-size: 13px;
       text-transform: uppercase;
-      margin: 0 0 14px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(52px, 8vw, 108px);
-      line-height: 1;
+      font-size: clamp(58px, 9vw, 122px);
+      line-height: 0.98;
       letter-spacing: 0;
-      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+      text-shadow: 0 12px 36px rgba(0, 0, 0, 0.62);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 12px 0 0;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
     }
 
     .lead {
-      margin: 22px 0 0;
-      max-width: 590px;
+      margin-top: 24px;
+      max-width: 690px;
       color: #efe5c5;
-      font-size: 20px;
-      line-height: 1.8;
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.82;
+      overflow-wrap: anywhere;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 26px 0 0;
-      font-family: "Hiragino Sans", system-ui, sans-serif;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .tags span {
-      border: 1px solid var(--line);
-      background: rgba(3, 7, 18, 0.46);
-      padding: 8px 10px;
-    }
-
-    .links {
+    .hero-actions,
+    .tags,
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 34px 0 0;
-      font-family: "Hiragino Sans", system-ui, sans-serif;
+    }
+
+    .hero-actions {
+      margin-top: 32px;
       font-size: 14px;
     }
 
-    .links a:first-child {
-      background: rgba(214, 180, 95, 0.18);
-      border-color: rgba(214, 180, 95, 0.78);
+    .tags {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .profile {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      margin: clamp(64px, 12vh, 120px) 0 0;
+    .tags span,
+    .tag {
       border: 1px solid var(--line);
-      background: var(--line);
-      font-family: "Hiragino Sans", system-ui, sans-serif;
+      background: rgba(5, 7, 18, 0.5);
+      padding: 8px 10px;
     }
 
-    .profile section {
+    .section {
+      position: relative;
+      padding: clamp(62px, 10vw, 112px) 0;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.72fr);
+      gap: clamp(24px, 6vw, 72px);
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .section-head p,
+    .card p,
+    .feature-copy p,
+    .manga-shot p,
+    .process-card p,
+    .world-copy p,
+    .connect p {
+      color: #dfd2ad;
+      font-family: var(--serif);
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .feature-media,
+    .card,
+    .process-card,
+    .fan-card {
+      border: 1px solid var(--line);
       background: var(--panel);
-      padding: 22px;
-      min-height: 158px;
+    }
+
+    .feature-media {
+      position: relative;
+      min-height: 430px;
+      background: url("assets/poster/hero_reel.webp") center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .feature-media::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(216, 182, 96, 0.42);
+    }
+
+    .feature-copy {
+      padding: clamp(24px, 4vw, 36px);
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      background:
+        linear-gradient(180deg, rgba(182, 63, 74, 0.16), transparent 48%),
+        var(--panel-strong);
+    }
+
+    .work-row,
+    .process-row {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(310px, 380px);
+      gap: 16px;
+      overflow-x: auto;
+      padding: 2px 2px 18px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .original-work-row {
+      grid-auto-columns: minmax(280px, 330px);
+    }
+
+    .work-category + .work-category {
+      margin-top: 34px;
+    }
+
+    .category-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line-soft);
+      padding-bottom: 10px;
+    }
+
+    .category-head h3 {
+      margin: 0;
+      font-size: clamp(22px, 3vw, 32px);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .card,
+    .process-card,
+    .fan-card {
+      scroll-snap-align: start;
       min-width: 0;
     }
 
-    .profile h2 {
-      margin: 0 0 12px;
+    .card video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center center;
+      background: #02040b;
+      border-bottom: 1px solid var(--line-soft);
+      filter: saturate(0.94) contrast(1.05);
+    }
+
+    .original-work-row .card video {
+      height: 100%;
+      aspect-ratio: auto;
+      border-bottom: 0;
+    }
+
+    .card-body,
+    .process-card,
+    .fan-card {
+      padding: 20px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 9px;
+      border: 1px solid rgba(216, 182, 96, 0.5);
       color: var(--gold);
-      font-size: 15px;
-      letter-spacing: 0;
+      font-family: var(--sans);
+      font-size: 12px;
+      text-transform: uppercase;
     }
 
-    .profile p {
-      margin: 0;
-      color: #e8dcc1;
-      font-size: 14px;
-      line-height: 1.75;
-      overflow-wrap: anywhere;
-      word-break: normal;
+    .tag-row {
+      margin-top: 16px;
     }
 
-    footer {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 0 0 22px;
-      color: rgba(247, 241, 223, 0.64);
-      font-family: "Hiragino Sans", system-ui, sans-serif;
+    .tag {
+      color: var(--muted);
       font-size: 12px;
     }
 
-    @media (max-width: 740px) {
-      header {
+    .media-frame,
+    .manga-shot-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #02040b;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .media-frame video,
+    .manga-shot-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .manga-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .manga-shot {
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+    }
+
+    .manga-shot.rough .manga-shot-media img {
+      object-fit: contain;
+      object-position: center center;
+      background: #ffffff;
+    }
+
+    .manga-shot-body {
+      padding: 16px;
+    }
+
+    .manga-shot h3 {
+      margin-top: 10px;
+      font-size: 19px;
+    }
+
+    .process-card {
+      min-height: 178px;
+      background: var(--panel-strong);
+    }
+
+    .fan {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.72fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .fan-card {
+      display: grid;
+      gap: 16px;
+      background:
+        linear-gradient(135deg, rgba(230, 138, 197, 0.16), transparent 58%),
+        var(--panel-strong);
+    }
+
+    .card-link {
+      display: inline-flex;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 48px;
+      align-items: center;
+      border: 1px solid var(--line);
+      padding: 0 14px;
+      color: #fff6d9;
+      background: rgba(216, 182, 96, 0.16);
+    }
+
+    .world {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1fr);
+      gap: clamp(24px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .world-visual {
+      position: relative;
+      min-height: 460px;
+      background: url("assets/world.webp") center / cover no-repeat;
+      border: 1px solid var(--line);
+    }
+
+    .world-visual::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(216, 182, 96, 0.42);
+    }
+
+    .world-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .world-copy .statement {
+      color: #fff1c7;
+      font-family: var(--serif);
+      font-size: clamp(21px, 2.8vw, 34px);
+      font-weight: 600;
+      line-height: 1.52;
+      text-shadow: 0 10px 28px rgba(0, 0, 0, 0.48);
+    }
+
+    .connect {
+      display: grid;
+      grid-template-columns: minmax(0, 0.84fr) minmax(300px, 1fr);
+      gap: clamp(24px, 5vw, 70px);
+      align-items: center;
+    }
+
+    .connect-links {
+      display: grid;
+      gap: 12px;
+      font-family: var(--sans);
+    }
+
+    .connect-links a {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 56px;
+      align-items: center;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      background: rgba(5, 7, 18, 0.66);
+    }
+
+    .connect-links a.featured-social {
+      min-height: 78px;
+      color: #070914;
+      background: linear-gradient(135deg, var(--gold-strong), #f7e4ad);
+      border-color: rgba(255, 235, 174, 0.96);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .connect-links a.featured-social span {
+      color: rgba(7, 9, 20, 0.72);
+      font-size: 15px;
+    }
+
+    .connect-links span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 0 0 26px;
+      color: rgba(248, 241, 223, 0.64);
+      font-size: 12px;
+    }
+
+    @keyframes orbit {
+      to {
+        transform: rotate(342deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero-media {
+        display: none;
+      }
+
+      .hero::after {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .nav-inner {
         align-items: flex-start;
         flex-direction: column;
+        padding: 14px 0;
       }
 
       nav {
         justify-content: flex-start;
       }
 
-      main {
-        padding-top: 42px;
+      .hero {
+        min-height: 720px;
       }
 
-      .lead {
-        font-size: 17px;
-      }
-
-      .profile {
+      .section-head,
+      .feature,
+      .fan,
+      .world,
+      .connect {
         grid-template-columns: 1fr;
       }
 
-      .profile section {
-        padding: 20px;
+      .manga-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .world-visual {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .nav-inner {
+        width: calc(100% - 32px);
+        max-width: calc(100% - 32px);
+        overflow: hidden;
+      }
+
+      .brand-mark {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        max-width: 100%;
+        gap: 8px;
+      }
+
+      nav a {
+        min-height: 36px;
+        padding: 0 8px;
+        font-size: 12px;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hero {
+        min-height: 680px;
+      }
+
+      .hero-inner {
+        padding-bottom: 42px;
+      }
+
+      .lead {
+        font-size: 16px;
+        line-height: 1.78;
+        word-break: break-all;
+      }
+
+      .world-copy .statement {
+        font-size: 22px;
+        line-height: 1.55;
+      }
+
+      .section-head p,
+      .card p,
+      .feature-copy p,
+      .manga-shot p,
+      .process-card p,
+      .world-copy p,
+      .connect p {
+        word-break: break-all;
+      }
+
+      .manga-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .button-link,
+      .card-link {
+        width: 100%;
+      }
+
+      .tags span,
+      .tag {
+        max-width: 100%;
+        padding: 7px 8px;
+        font-size: 12px;
+      }
+
+      .work-row,
+      .process-row {
+        grid-auto-columns: minmax(270px, 86vw);
+      }
+
+      .original-work-row {
+        grid-auto-columns: minmax(260px, 82vw);
+      }
+
+      .connect-links a {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 12px 14px;
       }
     }
   </style>
@@ -236,54 +798,317 @@
 <body>
   <div class="page">
     <header>
-      <div class="brand-mark">
-        <strong>斎院あや</strong>
-        <span>AI Video Creator</span>
+      <div class="nav-inner">
+        <div class="brand-mark">
+          <strong>斎院あや</strong>
+          <span>Sign Aya — AI VIDEO CREATOR</span>
+        </div>
+        <nav aria-label="Navigation and social links">
+          <a href="#works">Works</a>
+          <a href="#manga">Manga</a>
+          <a href="#fanworks">Fan Works</a>
+          <a href="#world">World</a>
+          <a href="#connect">Connect</a>
+        </nav>
       </div>
-      <nav aria-label="Social links">
-        <a href="https://x.com/rosalietexier" rel="me noopener">X</a>
-        <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener">TikTok</a>
-        <a href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram</a>
-      </nav>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="title">
-        <p class="eyebrow">Story / Visual / Character / Motion</p>
-        <h1 id="title">斎院あや</h1>
-        <p class="lead">物語、画面設計、キャラクター、動きの連続性を組み上げるAI Video Creator。</p>
-        <div class="tags" aria-label="Creative fields">
-          <span>AI Video</span>
-          <span>Visual Direction</span>
-          <span>Character Design</span>
-          <span>Story Design</span>
-        </div>
-        <div class="links" aria-label="Primary social links">
-          <a href="https://x.com/rosalietexier" rel="me noopener">X @rosalietexier</a>
-          <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener">TikTok @rosalietexier</a>
-          <a href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram @rosalietexier2026</a>
+        <div class="hero-fallback"></div>
+        <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="assets/poster/hero_reel.webp" aria-hidden="true">
+          <source src="assets/video/hero_reel.mp4" type="video/mp4">
+        </video>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Constellation Emaki / AI Video Portfolio</p>
+            <h1 id="title">斎院あや</h1>
+            <p class="lead">
+              雪の泉に立つ青髪の巫女、黒とピンクの煙、静かな祈りと激しい術式。AI映像で物語を立ち上げるクリエイター。
+            </p>
+            <div class="hero-actions" aria-label="Primary links">
+              <a class="button-link instagram-primary" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener">Instagram</a>
+              <a class="button-link" href="https://x.com/rosalietexier" rel="me noopener">X</a>
+              <a class="button-link" href="https://www.tiktok.com/@rosalietexier" rel="me noopener">TikTok</a>
+              <a class="button-link" href="#works">Works</a>
+            </div>
+            <div class="tags" aria-label="Creative fields">
+              <span>Story</span>
+              <span>Visual</span>
+              <span>Character</span>
+              <span>Motion</span>
+              <span>Manga Process</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="profile" aria-label="Creative profile">
-        <section>
-          <h2>AI Video</h2>
-          <p>短編映像、縦型動画、PVの画面設計。</p>
-        </section>
-        <section>
-          <h2>World & Character</h2>
-          <p>印象、衣装、関係性、世界観を整える。</p>
-        </section>
-        <section>
-          <h2>Direction</h2>
-          <p>画像生成、映像生成、編集工程をつなぐ。</p>
-        </section>
+      <section class="section" aria-labelledby="featured-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Featured Saga</p>
+            <h2 id="featured-title">神の泉の呪いの巫女</h2>
+          </div>
+          <p>
+            斎院あやの旗艦作品。雪の泉、神水、荒御、結界戦を軸に、和の神話性とAI映像のスピードを接続する。
+          </p>
+        </div>
+        <div class="feature">
+          <div class="feature-media" role="img" aria-label="旗艦作品の代表フレーム"></div>
+          <div class="feature-copy">
+            <span class="label">Original Saga</span>
+            <h3>雪の泉から始まる、巫女と荒御の物語</h3>
+            <p>
+              水が舞い、雪が降り、静けさが戦いへ変わる。短い映像の断片から、長編の気配を感じてください。
+            </p>
+            <div class="tag-row">
+              <span class="tag">Seedance</span>
+              <span class="tag">Grok</span>
+              <span class="tag">CapCut</span>
+              <span class="tag">Original Sound</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="works" aria-labelledby="works-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Works Gallery</p>
+            <h2 id="works-title">映像作品</h2>
+          </div>
+          <p>
+            雪の泉の青、神水のきらめき、ピンクの煙の夜。斎院あやの作品世界を短いクリップで見られます。
+          </p>
+        </div>
+
+        <div class="work-category">
+          <div class="category-head">
+            <h3>Original Works</h3>
+            <span class="meta">Saga / Shrine / Motion</span>
+          </div>
+          <div class="work-row original-work-row" aria-label="Original works">
+            <article class="card">
+              <div class="media-frame">
+                <video controls muted playsinline preload="none" poster="assets/poster/works_original_01.webp" width="1280" height="720">
+                  <source src="assets/video/works_original_01.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <span class="label">Original</span>
+                <h3>雪泉の邂逅</h3>
+                <p>雪夜の泉に、ひとりの巫女が現れる。静けさから物語が始まる。</p>
+                <div class="tag-row"><span class="tag">12s</span><span class="tag">No audio</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="media-frame">
+                <video controls muted playsinline preload="none" poster="assets/poster/works_original_02.webp" width="1280" height="720">
+                  <source src="assets/video/works_original_02.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <span class="label">Original</span>
+                <h3>神水の舞</h3>
+                <p>神水が弧を描き、衣がほどけるように動く。祈りが映像になる。</p>
+                <div class="tag-row"><span class="tag">12s</span><span class="tag">Motion</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="media-frame">
+                <video controls muted playsinline preload="none" poster="assets/poster/works_original_03.webp" width="1280" height="720">
+                  <source src="assets/video/works_original_03.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <span class="label">Original</span>
+                <h3>荒御襲撃</h3>
+                <p>静かな神域に荒御が踏み込む。空気が変わる一瞬を切り取る。</p>
+                <div class="tag-row"><span class="tag">12s</span><span class="tag">Action</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="media-frame">
+                <video controls muted playsinline preload="none" poster="assets/poster/works_original_04.webp" width="1280" height="720">
+                  <source src="assets/video/works_original_04.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <span class="label">Original</span>
+                <h3>COLOTEK版 神の泉</h3>
+                <p>神の泉の物語を、より大きな画面とテンポで見せる特別版。</p>
+                <div class="tag-row"><span class="tag">16s</span><span class="tag">Hackathon</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="work-category">
+          <div class="category-head">
+            <h3>Music Video / Hackathon</h3>
+            <span class="meta">MV / Collaboration / 4K source</span>
+          </div>
+          <div class="work-row original-work-row" aria-label="Music video and hackathon works">
+            <article class="card">
+              <div class="media-frame">
+                <video controls muted playsinline preload="none" poster="assets/poster/works_mv_01.webp" width="720" height="1280">
+                  <source src="assets/video/works_mv_01.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <span class="label">Music Video</span>
+                <h3>ピンクの煙</h3>
+                <p>黒い夜にピンクの煙が揺れる。神域とは違う色で、もうひとつの世界を開く。</p>
+                <div class="tag-row"><span class="tag">16s</span><span class="tag">Vertical</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="media-frame">
+                <video controls muted playsinline preload="none" poster="assets/poster/works_hack_01.webp" width="1280" height="720">
+                  <source src="assets/video/works_hack_01.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <span class="label">Hackathon</span>
+                <h3>生きる覚悟</h3>
+                <p>Rosalie and ChouChou 名義の36時間ハッカソン制作。疑念、同盟、裏切り、究極の選択が交差するサバイバルゲーム作品。</p>
+                <div class="tag-row"><span class="tag">16s</span><span class="tag">Collaborative Work</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="manga" aria-labelledby="manga-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Manga Process</p>
+            <h2 id="manga-title">物語が絵になるまで</h2>
+          </div>
+          <p>
+            映像だけでなく、漫画として読める場面も制作中です。世界観、人物、絵コンテ、背景を少しずつ重ねています。
+          </p>
+        </div>
+        <div class="manga-gallery" aria-label="Manga reference images">
+          <article class="manga-shot">
+            <div class="manga-shot-media">
+              <img src="assets/manga/manga_key_square.webp" alt="雪の泉に立つ巫女と荒御のキービジュアル" width="900" height="900" loading="lazy">
+            </div>
+            <div class="manga-shot-body">
+              <span class="label">World</span>
+              <h3>世界観ビジュアル</h3>
+              <p>雪の泉、祈り、荒御。物語の核になる空気を絵で固める。</p>
+            </div>
+          </article>
+          <article class="manga-shot">
+            <div class="manga-shot-media">
+              <img src="assets/manga/manga_character_square.webp" alt="斎院あやの衣装と表情のキャラクター設定資料" width="900" height="900" loading="lazy">
+            </div>
+            <div class="manga-shot-body">
+              <span class="label">Character</span>
+              <h3>人物設定</h3>
+              <p>衣装、髪、表情、視線。映像と漫画の間で人物像を合わせる。</p>
+            </div>
+          </article>
+          <article class="manga-shot rough">
+            <div class="manga-shot-media">
+              <img src="assets/manga/manga_rough_square.webp" alt="雪の泉での場面を描いた落書き風のラフ" width="900" height="900" loading="lazy">
+            </div>
+            <div class="manga-shot-body">
+              <span class="label">Storyboard</span>
+              <h3>場面ラフ</h3>
+              <p>荒い線で場面の動きだけをつかみ、後から映像や漫画へ育てる。</p>
+            </div>
+          </article>
+          <article class="manga-shot">
+            <div class="manga-shot-media">
+              <img src="assets/manga/manga_location_square.webp" alt="雪の森の泉のロケーション設定ビジュアル" width="900" height="900" loading="lazy">
+            </div>
+            <div class="manga-shot-body">
+              <span class="label">Location</span>
+              <h3>場所設定</h3>
+              <p>泉、雪、金の線、夜空。場面が戻ってこられる場所をつくる。</p>
+            </div>
+          </article>
+        </div>
+        <div class="process-row" aria-label="Manga production process">
+          <article class="process-card"><span class="label">01</span><h3>世界観</h3><p>物語の舞台、光、色、空気を先に決める。</p></article>
+          <article class="process-card"><span class="label">02</span><h3>人物</h3><p>衣装、表情、立ち姿をそろえ、同じ人物として動かす。</p></article>
+          <article class="process-card"><span class="label">03</span><h3>場面</h3><p>絵コンテやラフで、視線と間をつくる。</p></article>
+          <article class="process-card"><span class="label">04</span><h3>選ぶ</h3><p>候補を見比べ、物語に残す一枚を選ぶ。</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="fanworks" aria-labelledby="fanworks-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Fan Works</p>
+            <h2 id="fanworks-title">JJK・他二次創作</h2>
+          </div>
+          <p>
+            JJK・他作品への敬意をこめた非公式ファン創作。漫画とイラストはpixivで公開しています。
+          </p>
+        </div>
+        <div class="fan">
+          <div class="fan-card">
+            <span class="label">Link Out</span>
+            <h3>Fan Works on pixiv</h3>
+            <p>二次創作の漫画、イラスト、派生作品はこちらから見られます。</p>
+            <a class="card-link" href="https://www.pixiv.net/users/54034407" rel="me noopener">
+              <strong>View on pixiv</strong>
+              <span>pixiv.net/users/54034407</span>
+            </a>
+          </div>
+          <div class="fan-card">
+            <span class="label">Fan Works</span>
+            <h3>原作への敬意をこめて</h3>
+            <p>ここでは入口だけを置き、作品そのものはpixivのページで楽しめるようにしています。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="world" aria-labelledby="world-title">
+        <div class="world">
+          <div class="world-copy">
+            <p class="eyebrow">World</p>
+            <h2 id="world-title">宇宙、古代、未来をひとつの映像へ。</h2>
+            <p class="statement">雪の泉、星の空、金の光。古い祈りが、未来の映像として動き出す。</p>
+            <p>斎院あやの作品には、静けさと激しさ、神話と日常、青と金と煙の色が同居しています。</p>
+          </div>
+          <div class="world-visual" role="img" aria-label="斎院あやの雪の泉の世界観ビジュアル"></div>
+        </div>
+      </section>
+
+      <section class="section" id="connect" aria-labelledby="connect-title">
+        <div class="connect">
+          <div>
+            <p class="eyebrow">Connect</p>
+            <h2 id="connect-title">最新作はInstagramへ。</h2>
+            <p>新しい映像、制作途中の一枚、作品の空気感はInstagramを中心に更新しています。</p>
+          </div>
+          <div class="connect-links" aria-label="Social links">
+            <a class="featured-social" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener"><strong>Instagram</strong><span>@rosalietexier2026</span></a>
+            <a href="https://x.com/rosalietexier" rel="me noopener"><strong>X</strong><span>@rosalietexier</span></a>
+            <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener"><strong>TikTok</strong><span>@rosalietexier</span></a>
+            <a href="https://www.pixiv.net/users/54034407" rel="me noopener"><strong>pixiv</strong><span>Fan Works</span></a>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer>
-      <span>Saion Aya / AI Video Creator</span>
+      Sign Aya / Rosalie Texier — AI Video & Story Works
     </footer>
   </div>
+  <script>
+    const videos = Array.from(document.querySelectorAll("video[controls]"));
+    for (const video of videos) {
+      video.addEventListener("play", () => {
+        for (const other of videos) {
+          if (other !== video) other.pause();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
