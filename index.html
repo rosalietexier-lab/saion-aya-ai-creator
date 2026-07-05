@@ -594,13 +594,67 @@
       line-height: 1;
     }
 
+    .stat-title {
+      display: block;
+      margin-top: 12px;
+      color: var(--gold-strong);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
     .stat span {
       display: block;
-      margin-top: 10px;
+      margin-top: 8px;
       color: #dfd2ad;
       font-family: var(--serif);
       font-size: 13px;
       line-height: 1.65;
+    }
+
+    .stat {
+      min-height: 148px;
+    }
+
+    .saga-strip {
+      grid-auto-columns: minmax(320px, 440px);
+    }
+
+    .saga-strip .card video {
+      height: auto;
+    }
+
+    .saga-strip .card-body {
+      display: grid;
+      gap: 4px;
+    }
+
+    .saga-full-link {
+      margin-top: 18px;
+      font-family: var(--sans);
+      font-size: 13px;
+    }
+
+    .saga-full-link a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 16px;
+      color: #fff6d9;
+      background: rgba(216, 182, 96, 0.16);
+      border: 1px solid var(--line);
+    }
+
+    .saga-suno {
+      margin-top: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+    }
+
+    .saga-suno a {
+      color: var(--pink);
+      border-bottom: 1px solid rgba(230, 138, 197, 0.5);
     }
 
     .manga-gallery {
@@ -961,18 +1015,74 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Featured Saga</p>
-            <p class="section-subcopy">Original AI Video Series</p>
+            <p class="section-subcopy">Original AI Video Series — 全5話</p>
             <h2 id="featured-title">神の泉の呪いの巫女</h2>
           </div>
           <p>
-            斎院あやの旗艦作品。雪の泉、神水、荒御、結界戦を軸に、和の神話性とAI映像のスピードを接続する。
+            斎院あやの旗艦作品。雪の森の泉から始まる物語を、絵巻のように左から右へ全5話でたどれます。各話のプレビューから、フル版へ。
           </p>
         </div>
-        <div class="feature">
-          <a class="feature-link" href="https://www.instagram.com/p/DX6A4NkzfZz/" rel="noopener" aria-label="神の泉の呪いの巫女の5分フル版をInstagramで見る">
-            <div class="feature-media" role="img" aria-label="旗艦作品の代表フレーム"></div>
-          </a>
+        <div class="work-row saga-strip" aria-label="神の泉の呪いの巫女 全5話ストリップ">
+          <article class="card">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/saga_part_01.webp" width="1280" height="720">
+              <source src="assets/video/saga_part_01.mp4" type="video/mp4">
+            </video>
+            <div class="card-body">
+              <span class="label">第一話</span>
+              <h3>森の泉での出会い</h3>
+              <p>雪の森の泉で、ひとりの巫女が舞う。物語はこの出会いから動き出す。</p>
+              <p class="sub-link"><a href="https://www.instagram.com/p/DYtZfd4I17U/" rel="noopener">この話をフルで見る → Instagram</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/saga_part_02.webp" width="1280" height="720">
+              <source src="assets/video/saga_part_02.mp4" type="video/mp4">
+            </video>
+            <div class="card-body">
+              <span class="label">第二話</span>
+              <h3>神水と逢瀬</h3>
+              <p>神水の口移し、そして三日ごとの逢瀬が重なっていく。</p>
+              <p class="sub-link"><a href="https://www.instagram.com/p/DYtZ03poD2r/" rel="noopener">この話をフルで見る → Instagram</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/saga_part_03.webp" width="1280" height="720">
+              <source src="assets/video/saga_part_03.mp4" type="video/mp4">
+            </video>
+            <div class="card-body">
+              <span class="label">第三話</span>
+              <h3>春、そして荒御襲来</h3>
+              <p>春が来て名を尋ね、婚儀へ。だが、荒御が襲い来る。</p>
+              <p class="sub-link"><a href="https://www.instagram.com/p/DYtaIQIoYaS/" rel="noopener">この話をフルで見る → Instagram</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/saga_part_04.webp" width="1280" height="720">
+              <source src="assets/video/saga_part_04.mp4" type="video/mp4">
+            </video>
+            <div class="card-body">
+              <span class="label">第四話</span>
+              <h3>迎え撃つ二人</h3>
+              <p>頼人と光継が迎え撃つ。あやは、二人を静かな眠りにつかせる。</p>
+              <p class="sub-link"><a href="https://www.instagram.com/p/DYtaTOHIg7N/" rel="noopener">この話をフルで見る → Instagram</a></p>
+            </div>
+          </article>
+          <article class="card">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/saga_part_05.webp" width="1280" height="720">
+              <source src="assets/video/saga_part_05.mp4" type="video/mp4">
+            </video>
+            <div class="card-body">
+              <span class="label">第五話</span>
+              <h3>あやの選択</h3>
+              <p>あやが選ぶ。その結末は、フル版で。</p>
+              <p class="sub-link"><a href="https://www.instagram.com/p/DYtav33I6OF/" rel="noopener">この話をフルで見る → Instagram</a></p>
+              <p class="saga-suno"><a href="https://suno.com/song/8e39bbb4-2d61-4f76-b728-f288a1de8114" rel="noopener">♪ 主題歌もSUNOで制作</a></p>
+            </div>
+          </article>
         </div>
+        <p class="saga-full-link">
+          <a href="https://www.instagram.com/p/DX6A4NkzfZz/" rel="noopener">全話を通して見る → Instagram（5分フル版）</a>
+        </p>
       </section>
 
       <section class="section" id="works" aria-labelledby="works-title">
@@ -994,48 +1104,6 @@
           </div>
           <div class="work-row original-work-row" aria-label="Original works">
             <article class="card">
-              <a class="media-link" href="https://www.instagram.com/p/DYtZfd4I17U/" rel="noopener" aria-label="雪泉の邂逅のフル版をInstagramで見る">
-                <div class="media-frame">
-                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_01.webp" width="1280" height="720">
-                    <source src="assets/video/works_original_01.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </a>
-              <div class="card-body">
-                <span class="label">Original</span>
-                <h3>雪泉の邂逅</h3>
-                <p>雪夜の泉に、ひとりの巫女が現れる。静けさから物語が始まる。</p>
-              </div>
-            </article>
-            <article class="card">
-              <a class="media-link" href="https://www.instagram.com/p/DYtZfd4I17U/" rel="noopener" aria-label="神水の舞のフル版をInstagramで見る">
-                <div class="media-frame">
-                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_02.webp" width="1280" height="720">
-                    <source src="assets/video/works_original_02.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </a>
-              <div class="card-body">
-                <span class="label">Original</span>
-                <h3>神水の舞</h3>
-                <p>神水が弧を描き、衣がほどけるように動く。祈りが映像になる。</p>
-              </div>
-            </article>
-            <article class="card">
-              <a class="media-link" href="https://www.instagram.com/p/DYtaTOHIg7N/" rel="noopener" aria-label="荒御襲撃のフル版をInstagramで見る">
-                <div class="media-frame">
-                  <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_03.webp" width="1280" height="720">
-                    <source src="assets/video/works_original_03.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </a>
-              <div class="card-body">
-                <span class="label">Original</span>
-                <h3>荒御襲撃</h3>
-                <p>静かな神域に荒御が踏み込む。空気が変わる一瞬を切り取る。</p>
-              </div>
-            </article>
-            <article class="card">
               <a class="media-link" href="https://www.instagram.com/p/DaSrAOkzuo1/" rel="noopener" aria-label="COLOTEK版 神の泉のフル版をInstagramで見る">
                 <div class="media-frame">
                   <video autoplay muted loop playsinline preload="metadata" poster="assets/poster/works_original_04.webp" width="1280" height="720">
@@ -1046,7 +1114,7 @@
               <div class="card-body">
                 <span class="label">Original</span>
                 <h3>COLOTEK版『神の泉』</h3>
-                <p>神の泉の物語を、より大きな画面とテンポで見せる特別版。</p>
+                <p>『神の泉の呪いの巫女』のもうひとつのバージョン。より大きな画面とテンポで見せる特別編集です。</p>
               </div>
             </article>
           </div>
@@ -1099,13 +1167,13 @@
             <h2 id="manga-title">物語が絵になるまで</h2>
           </div>
           <p>
-            映像だけでなく、漫画として読める場面も制作中です。世界観、人物、絵コンテ、背景を少しずつ重ねています。
+            AIに描かせて終わり、ではありません。設計し、大量に生成し、選び抜く——漫画も映像と同じ工程で作っています。
           </p>
         </div>
         <div class="manga-stats" aria-label="Manga production scale">
-          <div class="stat"><strong>85ページ</strong><span>漫画版として組んでいる長編ネームの想定ページ数。場面の順番、見せ場、余白をこの規模で設計しています。</span></div>
-          <div class="stat"><strong>53-140枚</strong><span>ページ数ではなく、1話分の表情・構図・視線を選ぶために生成して見比べる候補画像の幅です。</span></div>
-          <div class="stat"><strong>選定</strong><span>候補画像、ラフ、映像カットを照らし合わせ、漫画として読める流れになるよう採用場面を決めています。</span></div>
+          <div class="stat"><strong>85ページ</strong><b class="stat-title">まず設計図から</b><span>思いつきでは描き始めません。長編1本ぶん、85ページのコマ割り設計図（ネーム）を先に組み、物語の流れを固めてから絵に入ります。</span></div>
+          <div class="stat"><strong>最大140枚/話</strong><b class="stat-title">生成して、比べる</b><span>1話のために、表情・構図・視線を変えた候補を最大140枚生成。並べて見比べ、物語に合う1枚だけを採用します。</span></div>
+          <div class="stat"><strong>1カットずつ</strong><b class="stat-title">採否を記録</b><span>採用・不採用は全カット記録に残します。キャラクターの顔立ちや衣装が、話をまたいでもブレないための品質管理です。</span></div>
         </div>
         <div class="manga-gallery" aria-label="Manga reference images">
           <article class="manga-shot">
@@ -1215,5 +1283,26 @@
       Sign Aya / Rosalie Texier — AI Video & Story Works / TapNow CPP Creator
     </footer>
   </div>
+  <script>
+    (function () {
+      var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      function apply() {
+        if (!mq.matches) return;
+        var videos = document.querySelectorAll("video");
+        for (var i = 0; i < videos.length; i++) {
+          var v = videos[i];
+          v.autoplay = false;
+          v.removeAttribute("autoplay");
+          try { v.pause(); } catch (e) {}
+        }
+      }
+      apply();
+      if (mq.addEventListener) {
+        mq.addEventListener("change", apply);
+      } else if (mq.addListener) {
+        mq.addListener(apply);
+      }
+    })();
+  </script>
 </body>
 </html>
