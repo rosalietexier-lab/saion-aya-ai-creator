@@ -20,6 +20,7 @@ Only these files may be tracked:
 - `assets/video/works_original_04.mp4`
 - `assets/video/works_mv_01.mp4`
 - `assets/video/works_hack_01.mp4`
+- `assets/video/komoribi_award.mp4`
 - `assets/poster/hero_reel.webp`
 - `assets/poster/saga_part_01.webp`
 - `assets/poster/saga_part_02.webp`
@@ -29,6 +30,7 @@ Only these files may be tracked:
 - `assets/poster/works_original_04.webp`
 - `assets/poster/works_mv_01.webp`
 - `assets/poster/works_hack_01.webp`
+- `assets/poster/komoribi_award.webp`
 - `assets/manga/manga_key_square.webp`
 - `assets/manga/manga_character_square.webp`
 - `assets/manga/manga_rough_square.webp`
