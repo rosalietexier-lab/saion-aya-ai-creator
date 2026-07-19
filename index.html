@@ -67,7 +67,253 @@
       background-position: 0 0, 42px 18px;
       background-size: 96px 96px, 142px 142px;
       opacity: 0.22;
-      mask-image: linear-gradient(180deg, #000, transparent 84%);
+      mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.42) 58%, rgba(0, 0, 0, 0.2));
+      animation: star-twinkle 9s ease-in-out infinite;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(248, 241, 223, 0.62) 0 0.8px, transparent 1.3px),
+        radial-gradient(circle, rgba(141, 199, 255, 0.52) 0 1px, transparent 1.6px);
+      background-position: 24px 60px, 88px 12px;
+      background-size: 72px 72px, 118px 118px;
+      opacity: 0.16;
+      mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.3) 92%);
+      animation: star-twinkle 13s ease-in-out infinite reverse;
+    }
+
+    @keyframes star-twinkle {
+      0%, 100% { opacity: 0.17; }
+      50% { opacity: 0.4; }
+    }
+
+    .cosmos {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      will-change: transform;
+      mask-image: radial-gradient(circle, #000 26%, transparent 62%);
+    }
+
+    .nebula svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .nebula-a {
+      width: 96vmax;
+      height: 96vmax;
+      top: -36vmax;
+      right: -36vmax;
+      background: radial-gradient(circle, rgba(122, 96, 230, 0.17), rgba(84, 70, 190, 0.08) 40%, transparent 64%);
+      animation: nebula-drift-a 70s ease-in-out infinite alternate;
+    }
+
+    .nebula-b {
+      width: 88vmax;
+      height: 88vmax;
+      top: 30%;
+      left: -46vmax;
+      background: radial-gradient(circle, rgba(141, 199, 255, 0.16), rgba(96, 156, 226, 0.07) 42%, transparent 66%);
+      animation: nebula-drift-b 58s ease-in-out infinite alternate;
+    }
+
+    .nebula-c {
+      width: 76vmax;
+      height: 76vmax;
+      bottom: -30vmax;
+      right: -22vmax;
+      background: radial-gradient(circle, rgba(238, 206, 120, 0.06), rgba(216, 182, 96, 0.03) 38%, transparent 58%);
+      animation: nebula-drift-c 82s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebula-drift-a {
+      from { transform: translate3d(-4%, -3%, 0) scale(1) rotate(0deg); }
+      to { transform: translate3d(5%, 5%, 0) scale(1.16) rotate(4deg); }
+    }
+
+    @keyframes nebula-drift-b {
+      from { transform: translate3d(-3%, 4%, 0) scale(1.12) rotate(3deg); }
+      to { transform: translate3d(6%, -4%, 0) scale(1) rotate(-3deg); }
+    }
+
+    @keyframes nebula-drift-c {
+      from { transform: translate3d(3%, 2%, 0) scale(1) rotate(-2deg); }
+      to { transform: translate3d(-5%, -4%, 0) scale(1.12) rotate(3deg); }
+    }
+
+    .glint {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      opacity: 0;
+      background: radial-gradient(circle, rgba(235, 248, 255, 0.95) 0 2px, rgba(150, 205, 255, 0.4) 5px, transparent 9px);
+      animation: glint-pop 18s linear infinite;
+    }
+
+    .glint::before,
+    .glint::after {
+      content: "";
+      position: absolute;
+      background: linear-gradient(180deg, transparent, rgba(235, 248, 255, 0.9), transparent);
+    }
+
+    .glint::before {
+      left: 50%;
+      top: -6px;
+      bottom: -6px;
+      width: 1.5px;
+      transform: translateX(-50%);
+    }
+
+    .glint::after {
+      top: 50%;
+      left: -6px;
+      right: -6px;
+      height: 1.5px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, transparent, rgba(235, 248, 255, 0.9), transparent);
+    }
+
+    .glint-1 { top: 16%; left: 12%; animation-duration: 17s; animation-delay: 0s; }
+    .glint-2 { top: 32%; left: 78%; animation-duration: 21s; animation-delay: 4s; }
+    .glint-3 { top: 58%; left: 22%; width: 14px; height: 14px; animation-duration: 15s; animation-delay: 8s; }
+    .glint-4 { top: 72%; left: 64%; animation-duration: 23s; animation-delay: 12s; }
+    .glint-5 { top: 44%; left: 46%; width: 22px; height: 22px; animation-duration: 26s; animation-delay: 6s; }
+    .glint-6 { top: 86%; left: 34%; width: 14px; height: 14px; animation-duration: 19s; animation-delay: 15s; }
+
+    @keyframes glint-pop {
+      0%, 88% { opacity: 0; transform: scale(0.25); }
+      92% { opacity: 1; transform: scale(1); }
+      96% { opacity: 0.55; transform: scale(1.4); }
+      100% { opacity: 0; transform: scale(1.6); }
+    }
+
+    .celestial {
+      position: absolute;
+      z-index: -1;
+      aspect-ratio: 1;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .celestial::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      border-radius: 50%;
+      animation: halo-breath 14s ease-in-out infinite;
+    }
+
+    .celestial img {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 56%, rgba(0, 0, 0, 0.5) 70%, transparent 84%);
+      mask-image: radial-gradient(circle at 50% 50%, #000 56%, rgba(0, 0, 0, 0.5) 70%, transparent 84%);
+    }
+
+    .moon {
+      width: min(31vw, 410px);
+      top: 11%;
+      left: 58.5%;
+    }
+
+    .moon::before {
+      background: radial-gradient(circle, rgba(250, 240, 214, 0.18), rgba(216, 182, 96, 0.08) 46%, transparent 70%);
+    }
+
+    .earth img {
+      -webkit-mask-image: linear-gradient(180deg, #000 50%, rgba(0, 0, 0, 0.8) 58%, transparent 74%);
+      mask-image: linear-gradient(180deg, #000 50%, rgba(0, 0, 0, 0.8) 58%, transparent 74%);
+    }
+
+    .earth {
+      width: min(190vw, 2400px);
+      left: 50%;
+      bottom: calc(min(190vw, 2400px) * -0.58);
+      transform: translateX(-54%) rotate(-9deg);
+    }
+
+    .earth::before {
+      display: none;
+    }
+
+    @keyframes halo-breath {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-width: 540px) {
+      .moon {
+        width: 44vw;
+        top: 5%;
+        left: auto;
+        right: 3%;
+        opacity: 0.85;
+      }
+
+      .earth {
+        width: 250vw;
+        bottom: calc(250vw * -0.56);
+      }
+    }
+
+    .drift {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -520px;
+      bottom: -520px;
+      background-repeat: repeat;
+      will-change: transform;
+    }
+
+    .drift-rise {
+      background-image:
+        radial-gradient(circle, rgba(235, 248, 255, 0.95) 0 0.7px, rgba(160, 210, 255, 0.4) 1.6px, transparent 3px),
+        radial-gradient(circle, rgba(255, 240, 200, 0.85) 0 0.6px, rgba(242, 213, 139, 0.35) 1.4px, transparent 2.6px),
+        radial-gradient(circle, rgba(200, 230, 255, 0.8) 0 0.5px, transparent 1.8px);
+      background-size: 170px 260px, 260px 260px, 110px 130px;
+      background-position: 30px 40px, 150px 180px, 60px 90px;
+      opacity: 0.55;
+      animation: drift-rise 52s linear infinite;
+    }
+
+    .drift-fall {
+      background-image:
+        radial-gradient(circle, rgba(226, 242, 255, 0.9) 0 0.9px, rgba(170, 215, 255, 0.35) 2px, transparent 3.6px),
+        radial-gradient(circle, rgba(210, 235, 255, 0.7) 0 0.6px, transparent 2px);
+      background-size: 240px 520px, 150px 260px;
+      background-position: 90px 0, 40px 120px;
+      opacity: 0.4;
+      animation: drift-fall 88s linear infinite;
+    }
+
+    @keyframes drift-rise {
+      0% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(18px, -260px, 0); }
+      100% { transform: translate3d(0, -520px, 0); }
+    }
+
+    @keyframes drift-fall {
+      0% { transform: translate3d(0, -520px, 0); }
+      50% { transform: translate3d(-14px, -260px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
     }
 
     a {
@@ -222,19 +468,23 @@
     }
 
     .button-link.instagram-primary.social-icon-link {
-      width: 54px;
-      height: 54px;
-      flex-basis: 54px;
-      min-width: 54px;
-      min-height: 54px;
+      width: 46px;
+      height: 46px;
+      flex-basis: 46px;
+      min-width: 46px;
+      min-height: 46px;
       padding: 0;
+      color: inherit;
+      background: rgba(5, 7, 18, 0.5);
+      border-color: var(--line);
       border-radius: 50%;
+      box-shadow: none;
     }
 
     .button-link.instagram-primary.social-icon-link img,
     .button-link.instagram-primary.social-icon-link svg {
-      width: 24px;
-      height: 24px;
+      width: 21px;
+      height: 21px;
     }
 
     .hero {
@@ -362,35 +612,37 @@
     }
 
     .credential-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      gap: 20px;
+      align-items: start;
+      margin-top: 24px;
     }
 
     .credential {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      border: 1px solid rgba(216, 182, 96, 0.62);
-      background: rgba(216, 182, 96, 0.15);
-      color: #fff6d9;
-      padding: 0 12px;
-      font-family: var(--sans);
-      font-size: 12px;
-      text-transform: uppercase;
+      margin: 0;
+      color: var(--gold-strong);
+      font-family: var(--serif);
+      font-size: clamp(18px, 1.9vw, 23px);
+      font-weight: 600;
+      line-height: 1.35;
     }
 
     .credential.award-credential {
-      border-color: rgba(141, 199, 255, 0.54);
-      background: rgba(141, 199, 255, 0.12);
       color: #d9eaff;
+    }
+
+    .credential-context {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-family: var(--sans);
       font-size: 11px;
-      text-transform: none;
+      font-weight: 400;
+      line-height: 1.45;
     }
 
     .hero-actions,
-    .tags,
     .tag-row {
       display: flex;
       flex-wrap: wrap;
@@ -403,13 +655,6 @@
       font-size: 14px;
     }
 
-    .tags {
-      margin-top: 26px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .tags span,
     .tag {
       border: 1px solid var(--line);
       background: rgba(5, 7, 18, 0.5);
@@ -878,6 +1123,25 @@
       text-shadow: 0 10px 28px rgba(0, 0, 0, 0.48);
     }
 
+    #connect {
+      border-top: 0;
+    }
+
+    #connect h2,
+    #connect .eyebrow,
+    #connect .section-subcopy,
+    #connect p {
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.95),
+        0 2px 8px rgba(0, 0, 0, 0.9),
+        0 6px 24px rgba(0, 0, 0, 0.8),
+        0 0 56px rgba(0, 0, 0, 0.65);
+    }
+
+    footer {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 2px 12px rgba(0, 0, 0, 0.85);
+    }
+
     .connect {
       display: grid;
       grid-template-columns: minmax(0, 0.84fr) minmax(300px, 1fr);
@@ -899,26 +1163,20 @@
       align-items: center;
       padding: 0 18px;
       border: 1px solid var(--line);
-      background: rgba(5, 7, 18, 0.66);
+      background: rgba(9, 14, 30, 0.5);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
 
-    .connect-links a.featured-social {
-      min-height: 78px;
-      color: #070914;
-      background: linear-gradient(135deg, var(--gold-strong), #f7e4ad);
-      border-color: rgba(255, 235, 174, 0.96);
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .connect-links a.featured-social span {
-      color: rgba(7, 9, 20, 0.72);
-      font-size: 15px;
+    .connect-links a strong {
+      flex: 0 0 auto;
     }
 
     .connect-links span {
       color: var(--muted);
       overflow-wrap: anywhere;
+      margin-left: auto;
+      text-align: right;
     }
 
     footer {
@@ -939,6 +1197,15 @@
       }
 
       .hero::after {
+        animation: none;
+      }
+
+      body::before,
+      body::after,
+      .nebula,
+      .drift,
+      .glint,
+      .celestial::before {
         animation: none;
       }
     }
@@ -1076,11 +1343,9 @@
         width: 100%;
       }
 
-      .tags span,
-      .tag {
-        max-width: 100%;
-        padding: 7px 8px;
-        font-size: 12px;
+      .credential-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
       }
 
       .work-row {
@@ -1102,6 +1367,19 @@
 </head>
 <body>
   <div class="page">
+    <div class="cosmos" aria-hidden="true">
+      <span class="nebula nebula-a"><svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice"><filter id="wisp-a"><feTurbulence type="fractalNoise" baseFrequency="0.0045" numOctaves="5" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 11 -5.4" result="a"/><feFlood flood-color="#9f86ff" flood-opacity="0.32" result="c"/><feComposite in="c" in2="a" operator="in"/><feGaussianBlur stdDeviation="7"/></filter><rect width="900" height="900" filter="url(#wisp-a)"/></svg></span>
+      <span class="nebula nebula-b"><svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice"><filter id="wisp-b"><feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="5" seed="19" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 11 -5.4" result="a"/><feFlood flood-color="#9fd0ff" flood-opacity="0.3" result="c"/><feComposite in="c" in2="a" operator="in"/><feGaussianBlur stdDeviation="7"/></filter><rect width="900" height="900" filter="url(#wisp-b)"/></svg></span>
+      <span class="nebula nebula-c"><svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice"><filter id="wisp-c"><feTurbulence type="fractalNoise" baseFrequency="0.004" numOctaves="5" seed="33" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 11 -5.8" result="a"/><feFlood flood-color="#f2dfae" flood-opacity="0.1" result="c"/><feComposite in="c" in2="a" operator="in"/><feGaussianBlur stdDeviation="8"/></filter><rect width="900" height="900" filter="url(#wisp-c)"/></svg></span>
+      <span class="drift drift-rise"></span>
+      <span class="drift drift-fall"></span>
+      <span class="glint glint-1"></span>
+      <span class="glint glint-2"></span>
+      <span class="glint glint-3"></span>
+      <span class="glint glint-4"></span>
+      <span class="glint glint-5"></span>
+      <span class="glint glint-6"></span>
+    </div>
     <header>
       <div class="nav-inner">
         <div class="brand-mark">
@@ -1124,6 +1402,7 @@
         <video class="hero-media" autoplay muted loop playsinline preload="metadata" poster="assets/poster/hero_reel.webp" aria-hidden="true">
           <source src="assets/video/hero_reel.mp4" type="video/mp4">
         </video>
+        <span class="celestial moon" aria-hidden="true"><img src="assets/moon_gold.webp" alt="" width="1100" height="1100" loading="eager" decoding="async"></span>
         <div class="hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">Constellation Emaki / AI Video Portfolio</p>
@@ -1135,7 +1414,7 @@
             <p class="hero-subcopy">AI Video Creator creating Japanese dark fantasy through story, motion, manga, and mythic visuals.</p>
             <div class="hero-actions" aria-label="Primary links">
               <a class="button-link instagram-primary social-icon-link" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener" aria-label="Instagramを開く" title="Instagramを開く">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="#070914" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
+                <svg viewBox="0 0 24 24" width="21" height="21" fill="#fbf3df" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
               </a>
               <a class="button-link social-icon-link" href="https://x.com/rosalietexier" rel="me noopener" aria-label="Xを開く" title="Xを開く">
                 <svg viewBox="0 0 24 24" width="21" height="21" fill="#fbf3df" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>
@@ -1145,16 +1424,9 @@
               </a>
               <a class="button-link" href="#works">Works</a>
             </div>
-            <div class="tags" aria-label="Creative fields">
-              <span>Story</span>
-              <span>Visual</span>
-              <span>Character</span>
-              <span>Motion</span>
-              <span>Manga Process</span>
-            </div>
             <div class="credential-row" aria-label="Credentials">
               <p class="credential">TapNow CPP Creator</p>
-              <p class="credential award-credential">Best Tech賞受賞</p>
+              <p class="credential award-credential">Best Tech賞<span class="credential-context">Google for Developers × TapNow AI</span></p>
             </div>
           </div>
         </div>
@@ -1436,6 +1708,7 @@
       </section>
 
       <section class="section" id="connect" aria-labelledby="connect-title">
+        <span class="celestial earth" aria-hidden="true"><img src="assets/earth_dawn.webp" alt="" width="1100" height="1100" loading="lazy" decoding="async"></span>
         <div class="connect">
           <div>
             <p class="eyebrow">Connect</p>
@@ -1444,7 +1717,7 @@
             <p>新しい映像と制作過程はInstagram、短尺動画はTikTok、漫画・小説・ファン創作はpixivで公開しています。</p>
           </div>
           <div class="connect-links" aria-label="Social links">
-            <a class="featured-social" href="https://www.instagram.com/rosalietexier2026/" rel="me noopener"><strong>Instagram</strong><span>AI映像作品・制作過程 / @rosalietexier2026</span></a>
+            <a href="https://www.instagram.com/rosalietexier2026/" rel="me noopener"><strong>Instagram</strong><span>AI映像作品・制作過程 / @rosalietexier2026</span></a>
             <a href="https://x.com/rosalietexier" rel="me noopener"><strong>X</strong><span>制作告知・更新 / @rosalietexier</span></a>
             <a href="https://www.tiktok.com/@rosalietexier" rel="me noopener"><strong>TikTok</strong><span>短尺動画 / @rosalietexier</span></a>
             <a href="https://www.pixiv.net/users/54034407" rel="me noopener"><strong>pixiv</strong><span>漫画・小説・二次創作アーカイブ</span></a>

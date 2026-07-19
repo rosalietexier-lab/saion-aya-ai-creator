@@ -11,6 +11,8 @@ Only these files may be tracked:
 - `index.html`
 - `assets/og.webp`
 - `assets/world.webp`
+- `assets/moon_gold.webp`
+- `assets/earth_dawn.webp`
 - `assets/video/hero_reel.mp4`
 - `assets/video/saga_part_01.mp4`
 - `assets/video/saga_part_02.mp4`
